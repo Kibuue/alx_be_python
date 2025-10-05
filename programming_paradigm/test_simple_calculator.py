@@ -18,24 +18,28 @@ class TestSimpleCalculator(unittest.TestCase):
         self.assertEqual(self.calc.add(0, 0), 0)
         self.assertEqual(self.calc.add(-5, -5), -10)
 
-    def test_subtract(self):
+    def test_subtraction(self):
         """Test the subtraction method."""
         self.assertEqual(self.calc.subtract(5, 3), 2)
         self.assertEqual(self.calc.subtract(3, 5), -2)
         self.assertEqual(self.calc.subtract(-5, -5), 0)
+        self.assertEqual(self.calc.subtract(0, 5), -5)
+        self.assertEqual(self.calc.subtract(5, 0), 5)
 
-    def test_multiply(self):
+    def test_multiplication(self):
         """Test the multiplication method."""
         self.assertEqual(self.calc.multiply(2, 3), 6)
         self.assertEqual(self.calc.multiply(-2, 3), -6)
         self.assertEqual(self.calc.multiply(0, 5), 0)
+        self.assertEqual(self.calc.multiply(-4, -5), 20)
 
-    def test_divide(self):
+    def test_division(self):
         """Test the division method, including division by zero."""
         self.assertEqual(self.calc.divide(6, 3), 2)
         self.assertEqual(self.calc.divide(-6, 3), -2)
-        self.assertEqual(self.calc.divide(5, 2), 2.5)
+        self.assertAlmostEqual(self.calc.divide(5, 2), 2.5)
         self.assertIsNone(self.calc.divide(5, 0))  # division by zero should return None
+        self.assertIsNone(self.calc.divide(0, 0))  # also should return None
 
 
 if __name__ == '__main__':
